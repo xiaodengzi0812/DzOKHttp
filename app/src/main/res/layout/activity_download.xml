@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#dddddd"
+        android:onClick="singleDownloadClick"
+        android:padding="5dp"
+        android:text="单线程下载"
+        android:textAllCaps="false"
+        android:textColor="#333333"
+        android:textSize="18sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#dddddd"
+        android:onClick="multipleDownloadClick"
+        android:padding="5dp"
+        android:text="多线程下载"
+        android:textAllCaps="false"
+        android:textColor="#333333"
+        android:textSize="18sp" />
+
+
+</LinearLayout>

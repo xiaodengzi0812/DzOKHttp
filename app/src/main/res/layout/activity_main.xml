@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#dddddd"
+        android:onClick="uploadProgressClick"
+        android:padding="5dp"
+        android:text="上传Progress"
+        android:textAllCaps="false"
+        android:textColor="#333333"
+        android:textSize="18sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#dddddd"
+        android:onClick="downloadProgressClick"
+        android:padding="5dp"
+        android:text="下载Progress"
+        android:textAllCaps="false"
+        android:textColor="#333333"
+        android:textSize="18sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#dddddd"
+        android:onClick="cacheClick"
+        android:padding="5dp"
+        android:text="缓存"
+        android:textAllCaps="false"
+        android:textColor="#333333"
+        android:textSize="18sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#dddddd"
+        android:onClick="downloadClick"
+        android:padding="5dp"
+        android:text="下载"
+        android:textAllCaps="false"
+        android:textColor="#333333"
+        android:textSize="18sp" />
+
+</LinearLayout>
