@@ -126,13 +126,16 @@ class DownloadTask {
         DownloadDispatcher.getInstance().executorService().execute(mProgressThread);
     }
 
+    /**
+     * 进度条回调线程,单独开一个线程来处理进度条的回调
+     */
     private class ProgressThread extends Thread {
         @Override
         public void run() {
-            if (mIsStop) return;
             long startTime = SystemClock.currentThreadTimeMillis();
             // 未下载结束就一直循环
             while (mCurrentLength < mTotalLength) {
+                if (mIsStop) return;
                 long currentTime = SystemClock.currentThreadTimeMillis();
                 // 为了性能,50ms回调一次
                 if (currentTime - startTime > DEFAULT_TIME) {
@@ -147,30 +150,6 @@ class DownloadTask {
             }
         }
     }
-
-
-    /**
-     * 进度条回调线程,单独开一个线程来处理进度条的回调
-     */
-//    private class ProgressCallbackRunnable implements Runnable {
-//        @Override
-//        public void run() {
-//            if (mIsStop) return;
-//            long startTime = SystemClock.currentThreadTimeMillis();
-//            // 未下载结束就一直循环
-//            while (mCurrentLength < mTotalLength) {
-//                long currentTime = SystemClock.currentThreadTimeMillis();
-//                // 为了性能,50ms回调一次
-//                if (currentTime - startTime > DEFAULT_TIME) {
-//                    startTime = currentTime;
-//                    mCallback.onProgress(getCurrentLength(), mTotalLength);
-//                    if (mIsSuccess) {
-//                        mCallback.onSucceed(mDownFile);
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     /**
      * 遍历获取子类集合的当前下载数
