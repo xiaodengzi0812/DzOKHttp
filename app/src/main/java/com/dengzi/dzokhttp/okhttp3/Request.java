@@ -1,10 +1,10 @@
 package com.dengzi.dzokhttp.okhttp3;
 
 /**
- * description: 网络请求
- * author: Darren on 2017/10/9 14:45
- * email: 240336124@qq.com
- * version: 1.0
+ * @author Djk
+ * @Title:网络请求
+ * @Time: 2017/11/24.
+ * @Version:1.0.0
  */
 public class Request {
     private final HttpUrl url;

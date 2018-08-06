@@ -3,10 +3,10 @@ package com.dengzi.dzokhttp.okhttp3;
 import java.io.IOException;
 
 /**
- * description:
- * author: Darren on 2017/10/9 15:39
- * email: 240336124@qq.com
- * version: 1.0
+ * @author Djk
+ * @Title:
+ * @Time: 2017/11/24.
+ * @Version:1.0.0
  */
 public interface Call {
     /** Returns the original request that initiated this call. */
@@ -33,7 +33,7 @@ public interface Call {
     /**
      * Schedules the request to be executed at some point in the future.
      *
-     * <p>The {@link OkHttpClient#dispatcher dispatcher} defines when the request will run: usually
+     * <p>The {@link DzHttpClient#dispatcher dispatcher} defines when the request will run: usually
      * immediately unless there are several other requests currently being executed.
      *
      * <p>This client will later call back {@code responseCallback} with either an HTTP response or a

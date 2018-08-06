@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * description:网络响应
- * author: Darren on 2017/10/9 14:46
- * email: 240336124@qq.com
- * version: 1.0
+ * @author Djk
+ * @Title:网络响应
+ * @Time: 2017/11/24.
+ * @Version:1.0.0
  */
 public class Response {
 

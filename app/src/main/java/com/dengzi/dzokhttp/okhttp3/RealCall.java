@@ -1,5 +1,6 @@
 package com.dengzi.dzokhttp.okhttp3;
 
+
 import com.dengzi.dzokhttp.okhttp3.interceptor.BridgeInterceptor;
 import com.dengzi.dzokhttp.okhttp3.interceptor.CustomInterceptor;
 import com.dengzi.dzokhttp.okhttp3.interceptor.Interceptor;
@@ -11,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * description:
- * author: Darren on 2017/10/9 15:37
- * email: 240336124@qq.com
- * version: 1.0
+ * @author Djk
+ * @Title: 请求头信息
+ * @Time: 2017/11/24.
+ * @Version:1.0.0
  */
 public class RealCall implements Call {
 
@@ -22,6 +23,8 @@ public class RealCall implements Call {
 
     // Guarded by this.
     private boolean executed;
+
+    private boolean isCancel = false;
 
     /**
      * The application's original request unadulterated by redirects or auth headers.
@@ -60,12 +63,13 @@ public class RealCall implements Call {
             if (executed) throw new IllegalStateException("Already Executed");
             executed = true;
         }
+
         client.dispatcher().enqueue(new AsyncCall(responseCallback));
     }
 
     @Override
     public void cancel() {
-        // 也先留着
+        isCancel = true;
     }
 
     @Override
@@ -75,8 +79,7 @@ public class RealCall implements Call {
 
     @Override
     public boolean isCanceled() {
-        // 是否被取消了，也先留着
-        return false;
+        return isCancel;
     }
 
     private Response getResponseWithInterceptorChain() throws IOException {
@@ -106,6 +109,9 @@ public class RealCall implements Call {
 
         @Override
         protected void execute() {
+            if (isCanceled()) {
+                return;
+            }
             Request request = request();
 
             // 模拟OkHttp的拦截器写法

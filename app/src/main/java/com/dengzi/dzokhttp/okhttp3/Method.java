@@ -16,7 +16,10 @@
 package com.dengzi.dzokhttp.okhttp3;
 
 /**
- * Created by Yan Zhenjie on 2016/12/18.
+ * @author Djk
+ * @Title: 请求方法
+ * @Time: 2017/11/24.
+ * @Version:1.0.0
  */
 public enum Method {
 

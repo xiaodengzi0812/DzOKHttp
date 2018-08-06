@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class Dispatcher {
     // 同时执行的最大线程数
-    private int maxRequests = 64;
+    private int maxRequests = 5;
     // 线程执行Executor
     private ExecutorService executorService;
     // 准备执行的队列
@@ -78,7 +78,7 @@ public class Dispatcher {
     /**
      * 继续执行准备执行的队列中的线程
      */
-    private void promoteCalls() {
+    private synchronized void promoteCalls() {
         // 如果异步执行的总数 > 最大执行线程数,则不继续执行
         if (runningAsyncCalls.size() >= maxRequests) return;
         // 如果准备执行的队列为null,则不继续执行
@@ -99,6 +99,7 @@ public class Dispatcher {
      * 单次异步执行结束
      */
     public void finished(RealCall.AsyncCall call) {
+        runningAsyncCalls.remove(call);
         promoteCalls();
     }
 
@@ -120,13 +121,14 @@ public class Dispatcher {
         for (RealCall.AsyncCall call : readyAsyncCalls) {
             call.get().cancel();
         }
-        // 取消异步执行中的队列
-        for (RealCall.AsyncCall call : runningAsyncCalls) {
-            call.get().cancel();
-        }
-        // 取消同步执行中的队列
-        for (RealCall call : runningSyncCalls) {
-            call.cancel();
-        }
+        readyAsyncCalls.clear();
+//        // 取消异步执行中的队列
+//        for (RealCall.AsyncCall call : runningAsyncCalls) {
+//            call.get().cancel();
+//        }
+//        // 取消同步执行中的队列
+//        for (RealCall call : runningSyncCalls) {
+//            call.cancel();
+//        }
     }
 }

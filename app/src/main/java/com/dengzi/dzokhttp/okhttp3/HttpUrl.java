@@ -3,11 +3,12 @@ package com.dengzi.dzokhttp.okhttp3;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
 /**
- * description: 网络请求路径
- * author: Darren on 2017/10/9 14:49
- * email: 240336124@qq.com
- * version: 1.0
+ * @author Djk
+ * @Title: 网络请求路径
+ * @Time: 2017/11/24.
+ * @Version:1.0.0
  */
 public class HttpUrl {
 

@@ -7,10 +7,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * description:请求头信息
- * author: Darren on 2017/10/9 14:46
- * email: 240336124@qq.com
- * version: 1.0
+ * @author Djk
+ * @Title: 请求头信息
+ * @Time: 2017/11/24.
+ * @Version:1.0.0
  */
 public class Headers {
     private final String[] namesAndValues;

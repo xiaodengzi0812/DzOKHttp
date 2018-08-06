@@ -3,10 +3,10 @@ package com.dengzi.dzokhttp.okhttp3;
 import java.io.IOException;
 
 /**
- * description:
- * author: Darren on 2017/10/9 15:39
- * email: 240336124@qq.com
- * version: 1.0
+ * @author Djk
+ * @Title:
+ * @Time: 2017/11/24.
+ * @Version:1.0.0
  */
 public interface Callback {
     /**

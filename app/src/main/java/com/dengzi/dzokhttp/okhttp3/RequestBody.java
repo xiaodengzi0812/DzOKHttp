@@ -14,10 +14,10 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * description:
- * author: Darren on 2017/10/9 18:05
- * email: 240336124@qq.com
- * version: 1.0
+ * @author Djk
+ * @Title:
+ * @Time: 2017/11/24.
+ * @Version:1.0.0
  */
 public class RequestBody {
     public static final String FORM = "multipart/form-data";

@@ -1,10 +1,10 @@
 package com.dengzi.dzokhttp.okhttp3;
 
 /**
- * description:
- * author: Darren on 2017/10/9 15:34
- * email: 240336124@qq.com
- * version: 1.0
+ * @author Djk
+ * @Title:
+ * @Time: 2017/11/24.
+ * @Version:1.0.0
  */
 public class OkHttpClient {
     final Dispatcher dispatcher;
