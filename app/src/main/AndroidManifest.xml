@@ -22,13 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".cache.CacheActivity"></activity>
-        <activity android:name=".TestActivity"></activity>
-        <activity android:name=".ProgressActivity"></activity>
-        <activity android:name=".download.DownloadActivity"></activity>
-        <activity android:name=".download.MultipleDownloadActivity"></activity>
-        <activity android:name=".progress_upload.ProgressUploadActivity"></activity>
-        <activity android:name=".progress_download.ProgressDownloadActivity"></activity>
+        <activity android:name=".cache.CacheActivity"/>
+        <activity android:name=".TestActivity"/>
+        <activity android:name=".ProgressActivity"/>
+        <activity android:name=".download.DownloadActivity"/>
+        <activity android:name=".download.MultipleDownloadActivity"/>
+        <activity android:name=".progress_upload.ProgressUploadActivity"/>
+        <activity android:name=".progress_download.ProgressDownloadActivity"/>
+
+        <activity android:name=".CustomActivity" />
     </application>
 
 </manifest>

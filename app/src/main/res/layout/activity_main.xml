@@ -53,4 +53,16 @@
         android:textColor="#333333"
         android:textSize="18sp" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#dddddd"
+        android:onClick="dcustomClick"
+        android:padding="5dp"
+        android:text="自定义测试"
+        android:textAllCaps="false"
+        android:textColor="#333333"
+        android:textSize="18sp" />
+
 </LinearLayout>

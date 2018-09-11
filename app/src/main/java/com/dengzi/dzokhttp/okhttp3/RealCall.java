@@ -1,6 +1,7 @@
 package com.dengzi.dzokhttp.okhttp3;
 
 
+
 import com.dengzi.dzokhttp.okhttp3.interceptor.BridgeInterceptor;
 import com.dengzi.dzokhttp.okhttp3.interceptor.CustomInterceptor;
 import com.dengzi.dzokhttp.okhttp3.interceptor.Interceptor;
@@ -13,7 +14,7 @@ import java.util.List;
 
 /**
  * @author Djk
- * @Title: 请求头信息
+ * @Title:
  * @Time: 2017/11/24.
  * @Version:1.0.0
  */
@@ -122,10 +123,21 @@ public class RealCall implements Call {
             InterceptorChain interceptorChain = new InterceptorChain(interceptors, 0, request);
             try {
                 Response response = interceptorChain.next(request);
-                responseCallback.onResponse(RealCall.this, response);
+                if (isCanceled()) {
+                    return;
+                }
+                if (response != null) {
+                    if (response.getResponseCode() == 200) {
+                        responseCallback.onResponse(RealCall.this, response);
+                    } else {
+                        responseCallback.onFailure(RealCall.this, new Exception(response.string()));
+                    }
+                } else {
+                    responseCallback.onFailure(RealCall.this, new Exception("response == null"));
+                }
             } catch (Exception e) {
-                e.printStackTrace();
-                responseCallback.onFailure(RealCall.this, new IOException(e));
+                // e.printStackTrace();
+                responseCallback.onFailure(RealCall.this, e);
             } finally {
                 client.dispatcher().finished(this);
             }

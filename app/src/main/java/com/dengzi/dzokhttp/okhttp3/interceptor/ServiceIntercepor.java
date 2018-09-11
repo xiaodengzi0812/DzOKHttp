@@ -3,6 +3,7 @@ package com.dengzi.dzokhttp.okhttp3.interceptor;
 import android.text.TextUtils;
 import android.util.Log;
 
+
 import com.dengzi.dzokhttp.okhttp3.Headers;
 import com.dengzi.dzokhttp.okhttp3.Request;
 import com.dengzi.dzokhttp.okhttp3.RequestBody;
@@ -24,9 +25,10 @@ import javax.net.ssl.HttpsURLConnection;
  * @Version:1.0.0
  */
 public class ServiceIntercepor implements Interceptor {
+    private static final String TAG = "HTTP";
+
     @Override
     public Response intercept(Chain chain) throws Exception {
-        Log.e("dengzi", "ServiceIntercepor");
         Request request = chain.request();
 
         HttpURLConnection httpURLConnection = (HttpURLConnection) request.url().url().openConnection();
@@ -40,6 +42,10 @@ public class ServiceIntercepor implements Interceptor {
         httpURLConnection.setRequestMethod(request.getMethod().value());
         httpURLConnection.setDoOutput(request.getMethod().isOut());
         httpURLConnection.setDoInput(true);
+        httpURLConnection.setConnectTimeout(5000);
+        httpURLConnection.setReadTimeout(5000);
+        httpURLConnection.setRequestProperty("connection", "Keep-Alive");
+        httpURLConnection.setRequestProperty("Charsert", "UTF-8");
 
         // 把头部提交一下
         Headers headers = request.getHeaders();
@@ -49,29 +55,18 @@ public class ServiceIntercepor implements Interceptor {
         }
         RequestBody requestBody = request.getRequestBody();
         if (requestBody != null) {
-            String contentType = requestBody.getContentType();
-            httpURLConnection.setRequestProperty("Content-Type", contentType);
-
-            long contentLength = requestBody.getContentLength();
-            httpURLConnection.setRequestProperty("Content-Length", contentLength + "");
-
-            Log.e("TAG111", contentType + "  " + contentLength);
+            requestBody.addRequestProperty(httpURLConnection);
         }
-
-        Log.e("TAG", "responseCode = 请求链接");
 
         // post 提交数据和文件数据
         httpURLConnection.connect();
-
-        // httpURLConnection.setRequestProperty("Content-Type","");
-        // httpURLConnection.setRequestProperty("Content-Length","");
 
         if (request.getMethod().isOut()) {
             requestBody.onWriteBody(httpURLConnection.getOutputStream());
         }
 
         int responseCode = httpURLConnection.getResponseCode();
-        Log.e("TAG", "responseCode = " + responseCode);
+        Log.e(TAG, "responseCode = " + responseCode);
         Map<String, List<String>> responseHeaders = httpURLConnection.getHeaderFields();
 
         if (hasBody(responseCode)) {
@@ -81,7 +76,7 @@ public class ServiceIntercepor implements Interceptor {
                     // 把 InputStream 转成 String
                     String result = Util.convertStream2String(inputStream);*/
             InputStream inputStream = getRealInputStream(responseCode, responseHeaders, httpURLConnection);
-            Response response = new Response(inputStream, responseHeaders);
+            Response response = new Response(responseCode, inputStream, responseHeaders);
             return response;
         }
         return null;

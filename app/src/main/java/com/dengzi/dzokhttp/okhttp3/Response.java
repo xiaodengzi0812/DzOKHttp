@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class Response {
 
-    private String result;
+    private int responseCode;
 
     private byte[] responseBody;
 
@@ -21,7 +21,8 @@ public class Response {
 
     private InputStream inputStream;
 
-    public Response(InputStream inputStream, Map<String, List<String>> responseHeaders) {
+    public Response(int responseCode, InputStream inputStream, Map<String, List<String>> responseHeaders) {
+        this.responseCode = responseCode;
         this.responseHeaders = responseHeaders;
         this.inputStream = inputStream;
     }
@@ -31,10 +32,10 @@ public class Response {
     }
 
     public String string() {
+        String result = "";
         try {
             result = Util.convertStream2String(inputStream);
         } catch (IOException e) {
-            e.printStackTrace();
         } finally {
             Util.close(inputStream);
             inputStream = null;
@@ -44,5 +45,9 @@ public class Response {
 
     public long getContentLength() {
         return Long.parseLong(responseHeaders.get("Content-Length").get(0));
+    }
+
+    public int getResponseCode() {
+        return this.responseCode;
     }
 }

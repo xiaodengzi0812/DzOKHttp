@@ -34,4 +34,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, DownloadActivity.class));
     }
 
+    public void dcustomClick(View view) {
+        startActivity(new Intent(MainActivity.this, CustomActivity.class));
+    }
+
 }

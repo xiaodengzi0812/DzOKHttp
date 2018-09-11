@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.dengzi.dzokhttp.okhttp3.Call;
 import com.dengzi.dzokhttp.okhttp3.Callback;
+import com.dengzi.dzokhttp.okhttp3.MultipartRequestBody;
 import com.dengzi.dzokhttp.okhttp3.OkHttpClient;
 import com.dengzi.dzokhttp.okhttp3.Request;
 import com.dengzi.dzokhttp.okhttp3.RequestBody;
@@ -41,8 +42,8 @@ public class CustomActivity extends AppCompatActivity {
 //                .addFormDataPart("platform", "android");
 
 
-        String url = "https://api.saiwuquan.com/api/appv2/sceneModel";
-        RequestBody requestBody = new RequestBody()
+        String url = "https://gank.io/api/add2gank";
+        RequestBody requestBody = new MultipartRequestBody()
                 .addFormDataPart("pageNo", "1")
                 .addFormDataPart("pageSize", "50")
                 .addFormDataPart("platform", "android");
@@ -55,8 +56,9 @@ public class CustomActivity extends AppCompatActivity {
         OkHttpClient okHttpClient = new OkHttpClient();
 
         okHttpClient.newCall(request).enqueue(new Callback() {
+
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(Call call, Exception e) {
                 e.printStackTrace();
                 Log.e("dengzi", "出错了");
             }
